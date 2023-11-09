@@ -26,7 +26,6 @@ public class Controller {
 
         initEmptyDataStructures();
         loadData();
-
     }
 
     public void initEmptyDataStructures(){
