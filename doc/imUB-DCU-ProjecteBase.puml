@@ -1,0 +1,55 @@
+@startuml
+left to right direction
+skinparam packageStyle rect
+skinparam actorStyle Hollow
+
+title Diagrama de casos d'ús per a imUB (versió del projecte base)
+
+actor Usuari as usuari
+actor Client as client
+
+rectangle imUB {
+
+usecase (UC1. Sign UP)  as UC1 #aliceblue;line:blue;line.bold;text:blue
+usecase (UC2. Sign IN) as UC2  #aliceblue;line:blue;line.bold;text:blue
+usecase (UC3. Visualitzar Catàleg ) as UC3  #aliceblue;line:blue;line.bold;text:blue
+usecase (UC3.a Visualitzar Pel·lícules) as UC32 #aliceblue;line:blue;line.bold;text:blue
+usecase (UC3.b Visualitzar Sèries ) as UC31 #aliceblue;line:blue;line.bold;text:blue
+usecase (UC4. Visualitzar Temporades ) as UC4 #aliceblue;line:blue;line.bold;text:blue
+usecase (UC5. Visualitzar Episodis ) as UC5 #aliceblue;line:blue;line.bold;text:blue
+
+usecase (UC6. Visualitzar Informació Pel·lícula ) as UC6
+usecase (UC7. Visualitzar Informació Sèrie ) as UC7
+usecase (UC8. Visualitzar Informació Episodi ) as UC8
+usecase (UC9. Visualitzar Informació Temporada) as UC9
+
+
+client - UC2
+
+UC1 -up.> UC2 : <<include>>
+
+UC3 <|-- UC31
+UC3 <|-- UC32
+
+
+UC7 --> UC4: <<include>>
+
+
+UC31 <-- UC7 : <<extends>>
+UC32 <-- UC6 : <<extends>>
+UC5 <-- UC9 : <<include>>
+UC5 <-- UC8 : <<extends>>
+UC4 <-- UC9 : <<extends>>
+
+client -- UC3
+usuari -- UC3
+usuari -- UC1
+
+
+}
+
+
+
+@enduml
+
+

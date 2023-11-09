@@ -1,0 +1,70 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>UC5: Llistar episodis d'una temporada d'una sèrie</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <h1>UC5: Llistar episodis d'una temporada d'una sèrie</h1>
+    <h3>COM a persona (usuari o client) </h3>
+    <h3>VULL llistar tots els episodis d'una temporada d'una sèrie</h3>
+    <h3>PER veure si tinc temps de veure la temporada sencera</h3>
+</head>
+<body>
+<h1>Criteri d'acceptació US5.1: La sèrie no existeix</h1>
+
+<h3>EN EL CAS QUE la sèrie no existeixi,</h3>
+<h3>QUAN la persona demani el llistat d'episodis d'una temporada de la sèrie</h3>
+<h3>EL SISTEMA mostrarà el missatge "Aquesta sèrie no està disponible en el sistema" </h3>
+<div concordion:example="zero">
+    <h5>Example del test d'acceptació 5.1</h5>
+    Quan es pregunti per una sèrie <span concordion:set="#nom">"The game"</span> que no existeix en el sistema,
+    el sistema <span concordion:set="#numTemp">7</span> mostrarà l'error
+    <span concordion:assertEquals = "visualitzarEpisodisTemporadaSerie(#nom, #numTemp )">[Aquesta sèrie no està disponible en el sistema]</span>
+</div>
+
+<h1>Criteri d'acceptació US5.2: La temporada no existeix</h1>
+
+<h3>EN EL CAS QUE la sèrie no tingui la temporada demanada,</h3>
+<h3>QUAN la persona demani el llistat d'episodis d'una temporada de la sèrie</h3>
+<h3>EL SISTEMA mostrarà el missatge "Aquesta sèrie no té aquesta temporada" </h3>
+<div concordion:example="one">
+    <h5>Example del test d'acceptació 5.2</h5>
+    Quan es pregunti per una sèrie <span concordion:set="#nom">Stranger Things</span> i per una temporada concreta que no existeix en la sèrie,
+    per exemple la temporada <span concordion:set="#temporada">9</span>, el sistema, el sistema mostrarà l'error
+    <span concordion:assertEquals = "visualitzarEpisodisTemporadaSerie(#nom, #temporada)">[Aquesta sèrie no té aquesta temporada]</span>
+</div>
+
+<h1>Criteri d'acceptació US5.3: La sèrie té la temporada amb episodis</h1>
+<p>
+<h3>EN EL CAS QUE la sèrie tingui la sèrie i la temporada demanada,</h3>
+<h3>QUAN la persona demani el llistat d'episodis d'una temporada de la sèrie</h3>
+<h3>EL SISTEMA mostrarà el llistat d'episodis ordenat per número d'episodis </h3>
+
+<div concordion:example="two">
+    <h5>Example del test d'acceptació 5.3</h5>
+    La següent taula mostra els resultats que esperem si demanem al sistema llistar els episodis d'una sèrie i d'una temporada concreta,
+    un cop
+    hem carregat la sèrie
+    <span concordion:set="#nom">Stranger Things</span>
+    de la primera temporada <span concordion:set="#temporada">1</span>:
+
+    <table concordion:verify-rows="#temporada : visualitzarEpisodisTemporadaSerie(#nom, #temporada)">
+        <tr>
+            <th concordion:assert-equals="#temporada">Llistat d'episodis de la primera temporada de la sèrie "Stranger Things":</th>
+        </tr>
+
+        <tr><td>Chapter One: The Vanishing of Will Byers</td></tr>
+        <tr><td>Chapter Two: The Weirdo on Maple Street</td></tr>
+        <tr><td>Chapter Three: Holly, Jolly</td></tr>
+        <tr><td>Chapter Four: The Body</td></tr>
+        <tr><td>Chapter Five: The Flea and the Acrobat</td></tr>
+        <tr><td>Chapter Six: The Monster</td></tr>
+        <tr><td>Chapter Seven: The Bathtub</td></tr>
+        <tr><td>Chapter Eight: The Upside Down</td></tr>
+
+    </table>
+
+</div>
+</p>
+
+
+</body>
+</html>

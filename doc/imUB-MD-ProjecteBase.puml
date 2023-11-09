@@ -1,0 +1,105 @@
+@startuml
+
+
+class "Pel·lícula" #aliceblue;line:blue;line.bold;text:blue {
+titol : String
+descripcio : String
+imatge : Image
+anyPrimeraEmissio: Integer
+idioma: String
+durada: Integer
+url: String
+}
+
+class Serie #aliceblue;line:blue;line.bold;text:blue {
+
+titol : String
+descripcio : String
+imatge : Image
+anyPrimeraEmissio : Integer
+idioma: String
+durada: Integer
+url: String
+}
+
+class Temporada #aliceblue;line:blue;line.bold;text:blue {
+  nomSerie: String
+  numTemporada : Integer
+  anyEstrena : Integer
+}
+
+class Episodi #aliceblue;line:blue;line.bold;text:blue {
+nomSerie: String
+numTemporada: Integer
+numEpisodi: Integer
+nom : String
+anyEstrena : Integer
+durada : Integer
+descripcio : String
+url : String
+}
+
+class Plataforma {
+
+nomPlataforma : String
+url : String
+}
+
+class Protagonista {
+nomReal: String
+nomFictici: String
+}
+
+
+class Direcció {
+nomDirector : String
+}
+
+class Client #aliceblue;line:blue;line.bold;text:blue{
+correuElectronic : String
+contrasenya : String
+identificador : String
+mobil : String
+icona : Image
+nomPerfil : String
+}
+
+class Tematica #aliceblue;line:blue;line.bold;text:blue {
+nomTematica : String
+}
+
+class Productora {
+nomProductora : String
+}
+
+class imUB
+
+imUB o-- "1..*" Client: enregistra
+
+imUB *-left- "1..*" "Serie": disposa
+imUB *-- "1..*" "Pel·lícula": disposa
+Serie "1" *-left- "1..*" Temporada: té
+Temporada "1" *-left- "1..*"Episodi: té
+
+"Pel·lícula" "*" -left- "1..*" Direcció: ésDirigitPer
+
+"Pel·lícula" "*" -- "1..*" Tematica: tracta
+"Pel·lícula" "*" -- "1..*" Protagonista: actua
+
+
+
+"Pel·lícula" "*" -- "1..*" Plataforma: esVeuenA
+"Pel·lícula" "*" -- "1..*" Productora: esProdueixPer
+
+"Episodi" "*" -- "1..*" Direcció: ésDirigitPer
+
+Serie "*" -- "1..*" Tematica: tracta
+Serie "*" -- "1..*" Protagonista: actua
+
+
+
+Serie "*" -- "1..*" Plataforma: esVeuenA
+Serie "*" -- "1..*" Productora: esProdueixPer
+
+
+@enduml

@@ -1,0 +1,140 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>UC3a: Llistar el catàleg de pel·lícules</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <h1> UC3a: Llistar el catàleg de pel·lícules</h1>
+    <h3>COM a persona (usuari o client) </h3>
+    <h3>VULL llistar les pel.lícules de imUB</h3>
+    <h3>PER veure els continguts de imUB</h3>
+</head>
+<body>
+
+<h1>Criteri d'acceptació US3a.1: No hi ha pel.lícules en el sistema</h1>
+<p>
+<h3>EN EL CAS QUE no hi hagi pel·lícules en el sistema <span concordion:set="#buit">buit</span>,</h3>
+<h3>QUAN la persona demani el llistat de pel·lícules</h3>
+<h3>EL SISTEMA mostrarà el missatge <span concordion:assertEquals="visualitzarPeliculesPerNom(#buit)">[No hi ha pel·lícules disponibles]</span></h3>
+</p>
+
+
+
+<h1>Criteri d'acceptació US3a.2: ORDRE PER NOM</h1>
+<h3>EN EL CAS QUE hi hagi pel·lícules en el sistema,</h3>
+<h3>QUAN la persona demani el llistat de pel·lícules per nom</h3>
+<h3>EL SISTEMA llista totes les pel·lícules del catàleg endrecades per nom.</h3>
+<div concordion:example="one">
+    <span concordion:set="#buit">Catàleg amb pel·lícules</span>
+    <table concordion:verify-rows="#peli : visualitzarPeliculesPerNom(#buit)">
+        <tr>
+            <th concordion:assert-equals="#peli">Llistat de pel·lícules del catàleg per nom:</th>
+        </tr>
+        <tr>
+            <td>Avatar</td>
+        </tr>
+        <tr>
+            <td>Avengers: Endgame</td>
+        </tr>
+        <tr>
+            <td>Inception</td>
+        </tr>
+        <tr>
+            <td>Interstellar</td>
+        </tr>
+        <tr>
+            <td>Parasite</td>
+        </tr>
+        <tr>
+            <td>Shawshank Redemption</td>
+        </tr>
+        <tr>
+            <td>The Dark Knight</td>
+        </tr>
+        <tr>
+            <td>The Godfather</td>
+        </tr>
+        <tr>
+            <td>The Matrix</td>
+        </tr>
+    </table>
+</div>
+
+
+
+<h1>Criteri d'acceptació US3a.3: ORDRE PER ANY D'ESTRENA</h1>
+<div concordion:example="two">
+<p>
+<h3>EN EL CAS QUE  hi hagi pel·lícules en el sistema,</h3>
+<h3>QUAN la persona  demani el llistat de pel·lícules per any d'estrena</h3>
+<h3>EL SISTEMA llista totes les pel·lícules del catàleg endrecades per any d'estrena</h3>
+</p>
+
+    <table concordion:verify-rows="#pelicula : visualitzarPeliculesPerEstrena()">
+    <tr>
+        <th concordion:assertEquals="#pelicula.titol">Títol</th>
+        <th concordion:assertEquals="#pelicula.any">Any Estrena</th>
+    </tr>
+       <tr>
+           <td>Avengers: Endgame</td><td>2019</td>
+       </tr>
+       <tr>
+           <td>Parasite</td><td>2019</td>
+       </tr>
+       <tr>
+           <td>Interstellar</td><td>2014</td>
+       </tr>
+       <tr>
+           <td>Inception</td><td>2010</td>
+       </tr>
+       <tr>
+           <td>Avatar</td><td>2009</td>
+       </tr>
+       <tr>
+           <td>The Dark Knight</td><td>2008</td>
+       </tr>
+       <tr>
+           <td>The Matrix</td>  <td>1999</td>
+       </tr>
+       <tr>
+           <td>Shawshank Redemption</td>  <td>1994</td>
+       </tr>
+       <tr>
+           <td>The Godfather</td> <td>1972</td>
+       </tr>
+    </table>
+</div>
+
+<h1>Criteri d'acceptació US3a.4: PER TEMÀTICA</h1>
+<div concordion:example="three">
+    <p>
+    <h3>EN EL CAS QUE hi hagi pel·lícules en el sistema,</h3>
+    <h3>QUAN la persona demani el llistat de pel·lícules per una certa temàtica</h3>
+    <h3>EL SISTEMA llista totes les pel·lícules del catàleg d'aquella temàtica</h3>
+    </p>
+
+    La següent taula mostra els resultats que esperem si demanem al sistema la llista de pel·lícules de
+    la temàtica <span concordion:set="#tematica">Sci-Fi</span>
+
+<p>
+    <table concordion:verify-rows="#peli : visualitzarPeliculesPerTematica(#tematica)">
+        <tr>
+            <th concordion:assert-equals="#peli">Llistat de pel·lícules de Sci-Fi ordenades per nom:</th>
+        </tr>
+        <tr>
+            <td>Avatar</td>
+        </tr>
+        <tr>
+            <td>Inception</td>
+        </tr>
+        <tr>
+            <td>Interstellar</td>
+        </tr>
+        <tr>
+            <td>The Matrix</td>
+        </tr>
+
+    </table>
+
+    </p>
+</div>
+</body>
+</html>

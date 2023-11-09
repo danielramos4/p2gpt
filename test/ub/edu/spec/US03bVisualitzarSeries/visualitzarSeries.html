@@ -1,0 +1,51 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>UC3b: Llistar el catàleg de sèries</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <h1> UC3b: Llistar el catàleg de sèries</h1>
+    <h3>COM a persona (client o usuari) </h3>
+    <h3>VULL llistar totes les sèries</h3>
+    <h3>PER veure els continguts de imUB en relació a les sèries</h3>
+</head>
+<body>
+<h1>Criteri d'acceptació US3b.1: No hi ha sèries en el sistema</h1>
+<p>
+<h3>EN EL CAS QUE no hi hagi sèries en el sistema <span concordion:set="#buit">buit</span>,</h3>
+<h3>QUAN la persona demani el llistat de sèries</h3>
+<h3>EL SISTEMA mostrarà el missatge <span concordion:assertEquals="visualitzarSeriesPerNom(#buit)">[No hi ha sèries disponibles]</span> </h3>
+</p>
+
+
+<h1>Criteri d'acceptació US3b.2: Llistat de sèries per NOM</h1>
+<p>
+<h3>EN EL CAS QUE hi hagi sèries en el sistema,</h3>
+<h3>QUAN la persona demani el llistat de sèries per nom</h3>
+<h3>EL SISTEMA llista totes les sèries del catàleg endrecades per nom.</h3>
+</p>
+<div concordion:example="one">
+    <span concordion:set="#buit">Catàleg amb sèries</span>
+    <table concordion:verify-rows="#serie : visualitzarSeriesPerNom(#buit)">
+        <tr>
+            <th concordion:assert-equals="#serie">Llistat de sèries del catàleg per nom:</th>
+        </tr>
+        <tr><td>Breaking Bad</td> </tr>
+        <tr><td>Chernobyl</td> </tr>
+        <tr><td>Friends</td> </tr>
+        <tr><td>Game of Thrones</td>
+        </tr>
+        <tr><td>Peaky Blinders</td> </tr>
+        <tr><td>Stranger Things</td>
+        </tr>
+        <tr><td>The Big Bang Theory</td> </tr>
+        <tr><td>The Crown</td>
+        </tr>
+        <tr><td>The Mandalorian</td>
+        </tr>
+        <tr><td>The Office</td> </tr>
+        <tr><td>The Witcher</td> </tr>
+    </table>
+</div>
+
+
+</body>
+</html>

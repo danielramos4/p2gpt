@@ -1,0 +1,87 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US02: Login de Client</title>
+    <h1>
+        US02: Login de Client
+    </h1>
+    <h3>Com a client enregistrat a l'app imUB</h3>
+    <h3>Vull iniciar la sessió del meu compte</h3>
+    <h3>Per tal d'accedir a les utilitats de l'aplicació</h3>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<h1>Acceptance Criteria US 2.1: Login Client: Contrasenya errònia</h1>
+<h3>EN EL CAS QUE la contrasenya introduida per el client sigui errònia</h3>
+<h3>QUAN el client seleccioni accedir a l'aplicació (LOGIN).</h3>
+<h3>EL SISTEMA  mostrarà un error "Contrassenya incorrecta".</h3>
+<p>El sistema dóna opció de login però la contrassenya donada és errònia.</p>
+<div concordion:example="one">
+    <h5>Example del test d'acceptació 2.1</h5>
+    Posem un client existent amb contrassenya errònia:
+    <span concordion:set="#user">ajaleo@gmail.com</span> amb contrassenya <span concordion:set="#pass">INVENTADA11</span>
+    el sistema hauria de donar <span concordion:assertEquals="loginPersona(#user, #pass)">Contrassenya incorrecta</span>.
+</div>
+
+
+<h1>Acceptance Criteria US 2.2:  Login Client: Correu erroni</h1>
+<h3>EN EL CAS QUE el correu no coincideixi amb el de cap compte.</h3>
+<h3>QUAN el client seleccioni accedir a l'aplicació (LOGIN).</h3>
+<h3>EL SISTEMA mostrarà un missatge d'error "Correu inexistent".</h3>
+<p>El sistema dona opció de login però el correu no coincideix amb el de cap compte.</p>
+<div concordion:example="two">
+    <h5>Example del test d'acceptació 2.2</h5>
+    Posem un client existent amb correu inexistent:
+    <span concordion:set="#user">gatigos@gmail.com</span> amb contrassenya <span concordion:set="#pass">INVENTADA11</span>
+    el sistema hauria de donar <span concordion:assertEquals="loginPersona(#user, #pass)">Correu inexistent</span>.
+</div>
+
+<h1>Acceptance Criteria US 2.3: Login Client: Contrassenya oblidada</h1>
+<h3>EN EL CAS QUE el client introdueixi el seu correu.</h3>
+<h3>QUAN el client seleccioni recuperar contrassenya.</h3>
+<h3>EL SISTEMA retornarà la seva contrassenya.</h3>
+<p>El sistema retornarà la contrassenya d'un usuari si aquest escriu el seu correu electrònic correctament (això és només un exemple,  cibersecurity people dislikes this).</p>
+<div concordion:example="three">
+    <h5>Example del test d'acceptació 2.3</h5>
+    Posem el correu d'un usuari:
+    <span concordion:set="#user">ajaleo@gmail.com</span> el sistema hauria de donar <span concordion:assertEquals="recuperarContrassenya(#user)">ajaleoPassw7</span>.
+</div>
+
+<h1>Acceptance Criteria US 2.4:  Login Persona: Logins correctes</h1>
+<h3>EN EL CAS QUE el client faci un login correcte.</h3>
+<h3>QUAN seleccioni recuperar contrassenya.</h3>
+<h3>EL SISTEMA li mostrarà el missatge "Login correcte".</h3>
+<p>El sistema dona opció de login i les dades introduïdes són correctes.</p>
+<div concordion:example="four">
+    <table concordion:execute="#valid=loginPersona(#user, #pass)">
+        <tr>
+            <th concordion:set="#user">Persona name</th>
+            <th concordion:set="#pass">Password</th>
+            <th concordion:assertEquals="#valid">Valid</th>
+        </tr>
+        <tr>
+            <td>ajaleo@gmail.com</td>
+            <td>Inventada321</td>
+            <td>Contrassenya incorrecta</td>
+        </tr>
+        <tr>
+            <td>ajaleo@gmail.com</td>
+            <td>ajaleoPassw7</td>
+            <td>Login correcte</td>
+        </tr>
+        <tr>
+            <td>dtomacal@yahoo.cat</td>
+            <td>Inventada123</td>
+            <td>Contrassenya incorrecta</td>
+        </tr>
+        <tr>
+            <td>dtomacal@yahoo.cat</td>
+            <td>Qwertyft5</td>
+            <td>Login correcte</td>
+        </tr>
+
+    </table>
+</div>
+
+</body>
+</html>
